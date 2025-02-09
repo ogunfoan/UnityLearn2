@@ -5,6 +5,7 @@ public class BackGroundRpt : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector3 startPos;
     private float repeatWidth;
+    public float speed;
     void Start()
     {
         startPos = transform.position;
