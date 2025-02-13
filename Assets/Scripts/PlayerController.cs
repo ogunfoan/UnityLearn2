@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float jumpforce = 10f;
     private Rigidbody PlayerRB;
     private Animator playerAnim;
+    public AudioClip jumpSound;
+    public AudioClip crashSound;
+    public AudioSource playerAudio;
     public float gravityModifier;
     public bool isGrounded;
     public bool gameOver = false;
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier; 
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,7 @@ public class PlayerController : MonoBehaviour
             PlayerRB.AddForce(Vector3.up * jumpforce, ForceMode.Impulse); //ForceMode.Impulse hemen aninda kullanimlarda ise yariyor
             isGrounded = false;
             playerAnim.SetTrigger("Jump_trig");
+            playerAudio.PlayOneShot(jumpSound, 1f);
             dirtParticles.Stop();
         }
     }
@@ -46,6 +51,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int" ,1);
             explosion.Play();
             dirtParticles.Stop();
+            playerAudio.PlayOneShot(crashSound, 1f);
         }
     }
 }
