@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public bool isGrounded;
     public bool gameOver = false;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
