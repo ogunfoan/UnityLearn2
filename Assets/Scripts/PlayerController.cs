@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerRB.AddForce(Vector3.up * jumpforce, ForceMode.Impulse); //ForceMode.Impulse hemen aninda kullanimlarda ise yariyor
             isGrounded = false;
-            playerAnim.SetTrigger("Jump_trig");
+            playerAnim.SetBool("Jump_b", true);
+            Invoke("Animsanim", 0.5f);
             playerAudio.PlayOneShot(jumpSound, 1f);
             dirtParticles.Stop();
         }
@@ -55,5 +56,10 @@ public class PlayerController : MonoBehaviour
             dirtParticles.Stop();
             playerAudio.PlayOneShot(crashSound, 1f);
         }
+    }
+
+    private void Animsanim()
+    {
+        playerAnim.SetBool("Jump_b", false);
     }
 }
